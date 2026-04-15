@@ -1,10 +1,10 @@
-# 🚗 Vehicle Insurance Fraud Detection using XGBoost
+# 🚗 Vehicle Insurance Fraud Detection using XGBoost & LSTM
 
 ## 📌 Overview
 
 Insurance fraud leads to significant financial losses for companies every year. Detecting fraudulent claims manually is inefficient due to large-scale data and hidden patterns.
 
-This project builds a **machine learning-based fraud detection system** using **XGBoost**, focusing on handling class imbalance and improving fraud detection performance.
+This project builds a **machine learning-based fraud detection system** using both **XGBoost** and **LSTM neural networks**, focusing on handling class imbalance and improving fraud detection performance.
 
 ---
 
@@ -36,6 +36,7 @@ This project builds a **machine learning-based fraud detection system** using **
 * Pandas, NumPy
 * Scikit-learn
 * XGBoost
+* TensorFlow/Keras (for LSTM)
 * Matplotlib, Seaborn
 * Google Colab
 
@@ -47,7 +48,64 @@ This project builds a **machine learning-based fraud detection system** using **
 2. Encoding categorical features
 3. Handling class imbalance
 4. Train-test split with stratification
-5. Model training using XGBoost
+5. Model training using **XGBoost** or **LSTM**
+6. Model evaluation and comparison
+
+---
+
+## 🧠 Models Implemented
+
+### XGBoost
+- Gradient boosting classifier
+- Handles class imbalance with `scale_pos_weight`
+- Fast training and inference
+- Good for tabular data
+
+### LSTM (Long Short-Term Memory)
+- Deep learning neural network
+- Reshapes tabular features into sequences
+- Two LSTM layers with dropout regularization
+- Better at capturing non-linear patterns
+- Suitable for complex feature interactions
+
+---
+
+## 📖 Usage
+
+### Training XGBoost Model
+```python
+from train import train_pipeline
+from evaluate import evaluate_model
+
+model, X_test, y_test = train_pipeline('data/sample_data.csv', 'FraudFound_P', model_type='xgboost')
+evaluate_model(model, X_test, y_test, model_type='xgboost')
+```
+
+### Training LSTM Model
+```python
+from train import train_pipeline
+from evaluate import evaluate_model
+
+model, X_test, y_test = train_pipeline('data/sample_data.csv', 'FraudFound_P', model_type='lstm')
+evaluate_model(model, X_test, y_test, model_type='lstm')
+```
+
+### Run Both Models
+```bash
+python src/main.py
+```
+
+---
+
+## 📊 Model Comparison
+
+| Metric | XGBoost | LSTM |
+|--------|---------|------|
+| Training Speed | Fast | Slower |
+| Accuracy | High | High |
+| Interpretability | High | Low |
+| Non-linear Patterns | Good | Excellent |
+| Overfitting Risk | Low | Medium |
 6. Model evaluation using multiple metrics
 7. Feature importance analysis
 
