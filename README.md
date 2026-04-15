@@ -1,217 +1,182 @@
-# 🚗 Vehicle Insurance Fraud Detection using XGBoost & LSTM
+# Vehicle Insurance Fraud Detection
 
-## 📌 Overview
+An end-to-end **Machine Learning and Deep Learning** project that detects fraudulent vehicle insurance claims using claim, policy, and vehicle-related data. This system helps identify suspicious claims early, supporting faster investigation and better fraud prevention.
 
-Insurance fraud leads to significant financial losses for companies every year. Detecting fraudulent claims manually is inefficient due to large-scale data and hidden patterns.
+## Table of Contents
 
-This project builds a **machine learning-based fraud detection system** using both **XGBoost** and **LSTM neural networks**, focusing on handling class imbalance and improving fraud detection performance.
+- [Overview](#overview)
+- [Problem Statement](#problem-statement)
+- [Objectives](#objectives)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Workflow](#project-workflow)
+- [Models Used](#models-used)
+- [Evaluation Metrics](#evaluation-metrics)
+- [Key Challenges Addressed](#key-challenges-addressed)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Results](#results)
+- [Future Enhancements](#future-enhancements)
+- [Author](#author)
+- [License](#license)
 
----
+## Overview
 
-## 📊 Dataset
+Insurance fraud is a major challenge for the insurance industry, leading to significant financial losses and inefficient claim processing. This project focuses on building an intelligent fraud detection system that classifies vehicle insurance claims as **fraudulent** or **genuine** using historical insurance data.
 
-* ~15,000+ insurance claim records
-* 33 features including:
+The project combines traditional machine learning approaches with an **LSTM-based deep learning model** to improve prediction performance and support better fraud analysis.
 
-  * Customer details (Age, PolicyType)
-  * Vehicle information (VehicleCategory, VehiclePrice)
-  * Claim-related attributes
+## Problem Statement
 
-### 🎯 Target Variable
+Vehicle insurance providers receive a large number of claims, and manually identifying fraudulent ones is time-consuming and error-prone. The goal of this project is to automate fraud detection by building predictive models that can learn hidden patterns from claim data and flag suspicious records effectively.
 
-* `FraudFound_P`
+## Objectives
 
-  * `0` → Legitimate claim
-  * `1` → Fraudulent claim
+- Build a system to detect fraudulent vehicle insurance claims
+- Preprocess and transform raw insurance data into usable features
+- Handle data imbalance between fraudulent and non-fraudulent claims
+- Train and compare multiple machine learning models
+- Implement an LSTM model for deep learning-based prediction
+- Evaluate model performance using standard classification metrics
 
-### ⚠️ Key Challenge
+## Features
 
-* Dataset is **imbalanced** (fraud cases are rare)
+- Comprehensive data preprocessing
+- Exploratory Data Analysis (EDA)
+- Feature engineering
+- Handling of imbalanced data
+- Multiple classification models
+- Deep learning with LSTM
+- Model evaluation and comparison
+- Fraud prediction pipeline
 
----
+## Tech Stack
 
-## ⚙️ Tech Stack
+**Languages & Libraries**  
+Python, Pandas, NumPy, Scikit-learn, XGBoost, TensorFlow, Keras
 
-* Python
-* Pandas, NumPy
-* Scikit-learn
-* XGBoost
-* TensorFlow/Keras (for LSTM)
-* Matplotlib, Seaborn
-* Google Colab
+**Deep Learning**  
+LSTM Neural Network
 
----
+**Visualization**  
+Matplotlib, Seaborn
 
-## 🔍 Workflow
+**Development Environment**  
+Jupyter Notebook, GitHub
 
-1. Data Cleaning & Preprocessing
-2. Encoding categorical features
-3. Handling class imbalance
-4. Train-test split with stratification
-5. Model training using **XGBoost** or **LSTM**
-6. Model evaluation and comparison
+## Project Workflow
 
----
-
-## 🧠 Models Implemented
-
-### XGBoost
-- Gradient boosting classifier
-- Handles class imbalance with `scale_pos_weight`
-- Fast training and inference
-- Good for tabular data
-
-### LSTM (Long Short-Term Memory)
-- Deep learning neural network
-- Reshapes tabular features into sequences
-- Two LSTM layers with dropout regularization
-- Better at capturing non-linear patterns
-- Suitable for complex feature interactions
-
----
-
-## 📖 Usage
-
-### Training XGBoost Model
-```python
-from train import train_pipeline
-from evaluate import evaluate_model
-
-model, X_test, y_test = train_pipeline('data/sample_data.csv', 'FraudFound_P', model_type='xgboost')
-evaluate_model(model, X_test, y_test, model_type='xgboost')
+```text
+Data Collection
+   ↓
+Data Preprocessing
+   ↓
+Exploratory Data Analysis
+   ↓
+Feature Engineering
+   ↓
+Handling Class Imbalance
+   ↓
+Model Training
+   ↓
+LSTM Model Building
+   ↓
+Model Evaluation
+   ↓
+Fraud Prediction
 ```
 
-### Training LSTM Model
-```python
-from train import train_pipeline
-from evaluate import evaluate_model
+## Models Used
 
-model, X_test, y_test = train_pipeline('data/sample_data.csv', 'FraudFound_P', model_type='lstm')
-evaluate_model(model, X_test, y_test, model_type='lstm')
-```
+### Machine Learning Models
+- Logistic Regression
+- Decision Tree Classifier
+- Random Forest Classifier
+- XGBoost Classifier
 
-### Run Both Models
+### Deep Learning Model
+- LSTM Neural Network
+
+## Evaluation Metrics
+
+The models are evaluated using the following metrics:
+
+- Accuracy
+- Precision
+- Recall
+- F1-Score
+- ROC-AUC Score
+- Confusion Matrix
+
+## Key Challenges Addressed
+
+- Dealing with imbalanced fraud detection data
+- Cleaning and encoding complex insurance claim features
+- Extracting meaningful patterns from structured claim records
+- Comparing machine learning and deep learning approaches
+- Reducing false positives while improving fraud detection capability
+
+## Project Structure
+
 ```bash
-python src/main.py
-```
-
----
-
-## 📊 Model Comparison
-
-| Metric | XGBoost | LSTM |
-|--------|---------|------|
-| Training Speed | Fast | Slower |
-| Accuracy | High | High |
-| Interpretability | High | Low |
-| Non-linear Patterns | Good | Excellent |
-| Overfitting Risk | Low | Medium |
-6. Model evaluation using multiple metrics
-7. Feature importance analysis
-
----
-
-## 🧠 Model Used
-
-* **XGBoost Classifier**
-
-  * Handles non-linear relationships
-  * Robust to imbalanced datasets using `scale_pos_weight`
-  * Provides feature importance insights
-
----
-
-## 📊 Evaluation Metrics
-
-Since fraud detection is an imbalanced problem, accuracy alone is not sufficient.
-
-We use:
-
-* **Precision** → Correct fraud predictions
-* **Recall** → Ability to detect actual fraud cases
-* **ROC-AUC Score** → Overall model performance
-* **Confusion Matrix** → Error analysis
-
----
-
-## 📈 Results
-
-* High recall achieved for fraud detection
-* Model successfully identifies fraud patterns
-* Feature importance highlights key contributing factors
-
----
-
-## 🔥 Key Insights
-
-* Fraud detection is a **cost-sensitive problem**
-* Missing fraud (false negatives) is more critical than false alarms
-* Certain features contribute significantly to fraud prediction
-
----
-
-## 📁 Project Structure
-
-```
-vehicle-insurance-fraud-detection/
+vehicle_insurance_fraud_detection/
 │
-├── data/
-│   └── sample_data.csv
-│
-├── notebooks/
-│   └── xgboost_fraud_detection.ipynb
-│
-├── src/
-│   ├── preprocessing.py
-│   ├── model.py
-│   ├── train.py
-│   └── evaluate.py
-│
-├── requirements.txt
-├── dataset_info.md
-└── README.md
+├── data/                # Dataset files
+├── notebooks/           # Jupyter notebooks for analysis and modeling
+├── src/                 # Source code scripts
+├── models/              # Saved trained models
+├── outputs/             # Graphs, reports, predictions
+├── requirements.txt     # Project dependencies
+└── README.md            # Project documentation
 ```
 
----
+## Installation
 
-## 🚀 How to Run
+Clone the repository and install the required dependencies.
 
-### 1. Clone Repository
-
-```
-git clone https://github.com/SoumyasreeMitra/Vehicle-Insurance-Fraud-Detection.git
-cd vehicle-insurance-fraud-detection
-```
-
-### 2. Install Dependencies
-
-```
+```bash
+git clone https://github.com/hineni26/vehicle_insurance_fraud_detection.git
+cd vehicle_insurance_fraud_detection
 pip install -r requirements.txt
 ```
 
-### 3. Run Project
+## Usage
 
+You can run the project through Jupyter Notebook or Python scripts.
+
+### Launch Jupyter Notebook
+
+```bash
+jupyter notebook
 ```
-python src/main.py
-```
 
----
+### Typical Steps
+- Load the dataset
+- Preprocess the data
+- Perform EDA
+- Train machine learning models
+- Train the LSTM model
+- Evaluate all models
+- Predict fraudulent claims
 
-## 🚀 Future Improvements
+## Results
 
-* Hyperparameter tuning (GridSearchCV / Optuna)
-* Use advanced models like LightGBM
-* Deploy using Streamlit or Flask
-* Real-time fraud detection system
+This project demonstrates how machine learning and deep learning can be used to identify suspicious vehicle insurance claims efficiently. By combining preprocessing, feature engineering, and model comparison, the system supports more accurate fraud detection and improved claim screening.
 
----
+## Future Enhancements
 
-## 📌 Conclusion
+- Deploy the model as a web application
+- Add real-time fraud prediction support
+- Improve LSTM architecture tuning
+- Apply advanced imbalance handling techniques such as SMOTE
+- Integrate explainable AI methods for model interpretability
+- Build an end-to-end MLOps pipeline
 
-This project demonstrates how machine learning, especially XGBoost, can effectively detect fraudulent insurance claims while handling real-world challenges like class imbalance.
+## Author
 
----
+**Ahan Mondal**
 
-## 👩‍💻 Author
+## License
 
-Ahan Modal
+This project is intended for educational and research purposes.
