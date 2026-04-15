@@ -214,4 +214,4 @@ This project demonstrates how machine learning, especially XGBoost, can effectiv
 
 ## 👩‍💻 Author
 
-Soumyasree Mitra
+Ahan Modal
