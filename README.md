@@ -90,9 +90,6 @@ Fraud Prediction
 ## Models Used
 
 ### Machine Learning Models
-- Logistic Regression
-- Decision Tree Classifier
-- Random Forest Classifier
 - XGBoost Classifier
 
 ### Deep Learning Model
